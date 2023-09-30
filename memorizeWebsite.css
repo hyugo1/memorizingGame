@@ -108,6 +108,11 @@ body {
 
 }
 
+.cardBack img {
+    width: 80%; 
+    height: 80%;
+}
+
 .cardFront {
     transform: rotateY(180deg);
 }
@@ -116,3 +121,5 @@ body {
     transform: rotateY(0deg);
     pointer-events: none;
 }
+
+
