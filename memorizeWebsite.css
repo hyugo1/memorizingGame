@@ -4,45 +4,83 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    background-color: #f0f0f0;
 }
 
 .memory-game {
     display: grid;
     grid-template-columns: repeat(4, 100px);
-    grid-gap: 10px;
+    gap: 10px;
+    position: relative;
 }
+
+.players {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 3em;
+}
+
+.player {
+    margin-bottom: 10px;
+}
+
+.player .score {
+    color: black; 
+}
+
+.player.current {
+    background-color: #ffc107; 
+    font-weight: bold;
+    color: white;
+}
+
+
 .card {
     width: 100px;
     height: 100px;
-    background-color: lightblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
     cursor: pointer;
-    user-select: none;
-    position: relative; 
 }
 
-.card .card-front,
-.card .card-back {
+
+
+.cardInner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    transform: rotateY(180deg);
+}
+
+.cardOpen .cardInner {
+    transform: rotateY(0deg);
+}
+
+.cardFront,
+.cardBack {
     width: 100%;
     height: 100%;
     position: absolute;
-    backface-visibility: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    transition: transform 0.5s;
+    font-size: 2em;
+    backface-visibility: hidden;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
 }
 
-.card .card-front {
-    background-color: lightblue;
-    transform: rotateY(180deg); /* Initially flipped to the back */
+.cardFront {
+    transform: rotateY(180deg);
 }
 
-.card .card-back {
-    background-color: lightblue;
-    transform: rotateY(0deg); /* Initially face down */
+.cardMatch .cardInner {
+    transform: rotateY(0deg);
+    pointer-events: none;
 }

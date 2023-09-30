@@ -1,78 +1,88 @@
-const cardsArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+const cardEmoji = ['😍', '😍', '😁', '😁', '🧐', '🧐', '😎', '😎', '🥰', '🥰', '😈', '😈', '🤩', '🤩', '🥶', '🥶'];
+const shuffle_emoji = cardEmoji.sort(() => (Math.random() > 0.5) ? 2 : -1);
 const memoryGame = document.querySelector('.memory-game');
-let cardsChosen = [];
-let cardsChosenId = [];
-let cardsWon = [];
 
-function shuffle(array) {
-    let currentIndex = array.length, randomIndex, tempValue;
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        tempValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = tempValue;
-    }
-    return array;
+
+
+let flippedCards = [];
+let matches = 0;
+let currentPlayer = 1;
+const player1ScoreElement = document.querySelector('#player1 .score');
+const player2ScoreElement = document.querySelector('#player2 .score');
+
+
+
+function switchPlayer() {
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
+    highlightCurrentPlayer(); 
 }
+
+for (let i = 0; i < shuffle_emoji.length; i++) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<div class="cardInner">
+                          <div class="cardFront"></div>
+                          <div class="cardBack">${shuffle_emoji[i]}</div>
+                      </div>`;
+
+    card.addEventListener('click', function () {
+        if (!this.classList.contains('cardOpen') && flippedCards.length < 2) {
+            this.classList.add('cardOpen');
+            flippedCards.push(this);
+
+            if (flippedCards.length === 2) {
+                setTimeout(checkForMatch, 500);
+            }
+        }
+    });
+
+    memoryGame.appendChild(card);
+}
+
 
 function checkForMatch() {
-    const cards = document.querySelectorAll('.card');
-    const chosenIds = [...cardsChosenId]; 
+    const [card1, card2] = flippedCards;
 
-    cardsChosenId = []; 
+    if (card1.querySelector('.cardBack').textContent === card2.querySelector('.cardBack').textContent) {
+        card1.classList.add('cardMatch');
+        card2.classList.add('cardMatch');
+        card1.classList.remove('cardOpen');
+        card2.classList.remove('cardOpen');
+        flippedCards = [];
+        matches++;
 
-    chosenIds.forEach((id) => {
-        cards[id].querySelector('.card-front').style.transform = 'rotateY(180deg)'; 
-    });
+        // Update player if they scores/match
+        if (currentPlayer === 1) {
+            player1ScoreElement.textContent = parseInt(player1ScoreElement.textContent) + 1;
+        } else {
+            player2ScoreElement.textContent = parseInt(player2ScoreElement.textContent) + 1;
+        }
 
-    if (cardsChosen[0] === cardsChosen[1]) {
-        cardsWon.push(cardsChosen);
-
-        chosenIds.forEach((id) => {
-            cards[id].style.display = 'none'; 
-        });
-    }
-
-    cardsChosen = [];
-
-    if (cardsWon.length === cardsArray.length / 2) {
-        alert('Congratulations! You won the game!');
-    }
-}
-
-
-function createBoard() {
-    const duplicatedCards = cardsArray.concat(cardsArray);
-    shuffle(duplicatedCards);
-
-    duplicatedCards.forEach((card, index) => {
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('card', 'unmatched');
-        cardElement.setAttribute('data-id', index);
-        cardElement.innerHTML = '<div class="card-back"></div><div class="card-front">' + card + '</div>';
-        cardElement.addEventListener('click', flipCard);
-        memoryGame.appendChild(cardElement);
-    });
-}
-
-function flipCard() {
-    const cardId = this.getAttribute('data-id');
-
-    if (!this.classList.contains('unmatched') || cardsChosenId.includes(cardId)) {
-        return;
-    }
-
-    this.querySelector('.card-front').style.transform = 'rotateY(0deg)';
-
-    cardsChosen.push(cardsArray[cardId]);
-    cardsChosenId.push(cardId);
-
-    if (cardsChosen.length === 2) {
+        if (matches === cardEmoji.length / 2) {
+            alert('Congratulations! Game Over!');
+        }
+    } else {
         setTimeout(() => {
-            checkForMatch();
+            card1.classList.remove('cardOpen');
+            card2.classList.remove('cardOpen');
+            flippedCards = [];
+            switchPlayer();
         }, 500);
     }
 }
 
-createBoard();
+
+function highlightCurrentPlayer() {
+    const player1 = document.getElementById('player1');
+    const player2 = document.getElementById('player2');
+    
+    if (currentPlayer === 1) {
+        player1.classList.add('current');
+        player2.classList.remove('current');
+    } else {
+        player1.classList.remove('current');
+        player2.classList.add('current');
+    }
+}
+
+highlightCurrentPlayer();
