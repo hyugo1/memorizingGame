@@ -9,6 +9,9 @@ const cardImages = [
     'volleyball.png'
 ];
 
+// Duplicate the card images to create pairs
+const cardImagesPairs = [...cardImages, ...cardImages];
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -16,7 +19,7 @@ function shuffleArray(array) {
     }
 }
 
-shuffleArray(cardImages);
+shuffleArray(cardImagesPairs);
 
 const memoryGame = document.querySelector('.memory-game');
 
@@ -31,30 +34,27 @@ function switchPlayer() {
     highlightTheCurrentPlayer(); 
 }
 
-for (let i = 0; i < cardImages.length; i++) {
-    for (let j = 0; j < 2; j++) { 
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `<div class="cardInner">
-                                <div class="cardFront"><img src="card.png" alt="Cards"></img></div>
-                                <div class="cardBack"><img src="${cardImages[i]}" alt="Content Image"></div>
-                          </div>`;
-    
-        card.addEventListener('click', function () {
-            if (!this.classList.contains('cardOpen') && flippedCards.length < 2) {
-                this.classList.add('cardOpen');
-                flippedCards.push(this);
-    
-                if (flippedCards.length === 2) {
-                    setTimeout(checkForMatch, 500);
-                }
-            }
-        });
-    
-        memoryGame.appendChild(card);
-    }
-}
+for (let i = 0; i < cardImagesPairs.length; i++) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<div class="cardInner">
+                            <div class="cardFront"><img src="card.png" alt="Cards"></div>
+                            <div class="cardBack"><img src="${cardImagesPairs[i]}" alt="Content Image"></div>
+                      </div>`;
 
+    card.addEventListener('click', function () {
+        if (!this.classList.contains('cardOpen') && flippedCards.length < 2) {
+            this.classList.add('cardOpen');
+            flippedCards.push(this);
+
+            if (flippedCards.length === 2) {
+                setTimeout(checkForMatch, 500);
+            }
+        }
+    });
+
+    memoryGame.appendChild(card);
+}
 
 function checkForMatch() {
     const [card1, card2] = flippedCards;
@@ -76,7 +76,7 @@ function checkForMatch() {
             player2ScoreElement.textContent = parseInt(player2ScoreElement.textContent) + 1;
         }
 
-        if (matches === cardImages.length / 2) {
+        if (matches === cardImages.length) {
             alert('Congratulations! Game Over!');
         }
     } else {
@@ -88,7 +88,6 @@ function checkForMatch() {
         }, 500);
     }
 }
-
 
 function highlightTheCurrentPlayer() {
     const player1 = document.getElementById('player1');
