@@ -21,7 +21,8 @@ for (let i = 0; i < shuffle_emoji.length; i++) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `<div class="cardInner">
-                          <div class="cardFront"></div>
+                          <!-- <div class="cardFront">♠️</div> --!>
+                          <div class="cardFront"><img src="card.png" alt="Cards"></img></div>
                           <div class="cardBack">${shuffle_emoji[i]}</div>
                       </div>`;
 
