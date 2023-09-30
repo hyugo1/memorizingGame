@@ -29,20 +29,26 @@ body {
     align-items: flex-end;
     font-size: 3em;
     font-family: 'Rubik', sans-serif;
+    background-color: #f3e5c7;
+    border: 2px solid #D2B48C;
 }
 
 .player {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    padding: 10px;
+    /* font-weight: bold; */
 }
 
 .player .score {
     color: black; 
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
 }
 
 .player.current {
     /* background-color: #7fea9a;  */
-    background-color: #ffe75d;
-    font-weight: bold;
+    background-color: #ffd555;
+    /* font-weight: bold; */
     color: black;
     font-family: 'Rubik', sans-serif;
     font-size: 3rem;
@@ -72,6 +78,7 @@ body {
 }
 
 
+/* this is teh side that shows the design */
 .cardFront {
     width: 100%;
     height: 100%;
@@ -91,6 +98,8 @@ body {
     height: 100%;
 }
 
+
+/* this is the side that shows the images */
 .cardBack {
     width: 100%;
     height: 100%;
@@ -100,9 +109,10 @@ body {
     align-items: center;
     font-size: 2em;
     backface-visibility: hidden;
-    border: 1.5px solid rgb(29, 26, 26);
+    border: 2px solid rgb(18, 17, 22);
     border-radius: 5px;
-    background-color: #DDDDDD;
+    /* background-color: #DDDDDD; */
+    background-color: #dedede;
 
 }
 
@@ -128,8 +138,9 @@ body {
     position: absolute;
     top: 50%;
     right: 15%;
-    background-color: #4ABF77;
-    color: white;
+    /* background-color: #4ABF77; */
+    background-color: #FFBF00;
+    color: rgb(16, 13, 13);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -137,11 +148,13 @@ body {
     border-radius: 5px;
     transition: transform 0.2s ease, background-color 0.3s ease;
     font-family: 'Pixelify Sans';
+    border: 1.5px solid #000080;
 }
 
 #restart-button:hover {
-    background-color: #3D9970;
+    background-color: #FF5722;
     transform: scale(1.10); 
+    color: white;
 }
 
 
@@ -149,15 +162,17 @@ body {
     position: fixed;
     top: 10px;
     right: 10px;
-    background-color: #4ABF77;
-    color: white;
+    background-color: #b1ff3b;
+    color: black;
     padding: 10px 20px;
     border-radius: 5px;
+    border: 1.5px solid #09c036;
     text-decoration: none;
     transition: background-color 0.3s ease;
     font-family: 'Pixelify Sans';
 }
 
 .go-back-button:hover {
-    background-color: #3D9970;
+    background-color: #FFBF00;
+    border: 1.5px solid #ffd91a;
 }

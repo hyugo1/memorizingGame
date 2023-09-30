@@ -4,7 +4,7 @@ const cardImages = [
     'baseball.png',
     'basketball.png',
     'football.png',
-    'golfball.png',
+    'world.png',
     'tennisball.png',
     'volleyball.png'
 ];
