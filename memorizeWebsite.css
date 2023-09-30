@@ -42,7 +42,7 @@ body {
 }
 
 .player.current {
-    background-color: #52e1c4; 
+    background-color: #7fea9a; 
     font-weight: bold;
     color: black;
     font-family: 'Rubik', sans-serif;
@@ -104,7 +104,7 @@ body {
     /* border: 1px solid #ccc; */
     border: 1.4px solid rgb(29, 26, 26);
     border-radius: 5px;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(212, 227, 211);
 
 }
 

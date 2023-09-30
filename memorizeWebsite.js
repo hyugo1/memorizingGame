@@ -56,6 +56,7 @@ for (let i = 0; i < cardImagesPairs.length; i++) {
     memoryGame.appendChild(card);
 }
 
+
 function checkForMatch() {
     const [card1, card2] = flippedCards;
     const img1 = card1.querySelector('.cardBack img');
@@ -69,15 +70,28 @@ function checkForMatch() {
         flippedCards = [];
         matches++;
 
-        // Update player scores when you match
         if (currentPlayer === 1) {
             player1ScoreElement.textContent = parseInt(player1ScoreElement.textContent) + 1;
         } else {
             player2ScoreElement.textContent = parseInt(player2ScoreElement.textContent) + 1;
         }
 
-        if (matches === cardImages.length) {
-            alert('Congratulations! Game Over!');
+        if (matches === cardImagesPairs.length / 2) {
+            // Determine the winner
+            let winnerMessage = '';
+            if (parseInt(player1ScoreElement.textContent) > parseInt(player2ScoreElement.textContent)) {
+                winnerMessage = 'Player 1 wins!';
+            } else if (parseInt(player1ScoreElement.textContent) < parseInt(player2ScoreElement.textContent)) {
+                winnerMessage = 'Player 2 wins!';
+            } else {
+                winnerMessage = "It's a tie!";
+            }
+
+            // Display the winner message
+            const winnerMessageElement = document.getElementById('winner-message');
+            winnerMessageElement.textContent = winnerMessage;
+            const gameOverMessage = document.querySelector('.game-over-message');
+            gameOverMessage.style.display = 'block';
         }
     } else {
         setTimeout(() => {
@@ -88,6 +102,8 @@ function checkForMatch() {
         }, 500);
     }
 }
+
+
 
 function highlightTheCurrentPlayer() {
     const player1 = document.getElementById('player1');
@@ -103,3 +119,5 @@ function highlightTheCurrentPlayer() {
 }
 
 highlightTheCurrentPlayer();
+
+
