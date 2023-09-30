@@ -9,7 +9,7 @@ const cardImages = [
     'volleyball.png'
 ];
 
-// Duplicate the card images to create pairs
+// Duplicate the card images to create pairs, this makes it 16 instead of 8
 const cardImagesPairs = [...cardImages, ...cardImages];
 
 function shuffleArray(array) {
@@ -77,7 +77,7 @@ function checkForMatch() {
         }
 
         if (matches === cardImagesPairs.length / 2) {
-            // Determine the winner
+            // check who is the winner
             let winnerMessage = '';
             if (parseInt(player1ScoreElement.textContent) > parseInt(player2ScoreElement.textContent)) {
                 winnerMessage = 'Player 1 wins!';
@@ -87,7 +87,6 @@ function checkForMatch() {
                 winnerMessage = "It's a tie!";
             }
 
-            // Display the winner message
             const winnerMessageElement = document.getElementById('winner-message');
             winnerMessageElement.textContent = winnerMessage;
             const gameOverMessage = document.querySelector('.game-over-message');
@@ -102,6 +101,12 @@ function checkForMatch() {
         }, 500);
     }
 }
+
+const resetButton = document.getElementById('restart-button');
+
+resetButton.addEventListener('click', function () {
+    location.reload();
+});
 
 
 
