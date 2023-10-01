@@ -10,9 +10,66 @@
 </head>
 <body>
     <div class="menu">
+        <!-- <img src="baseball.png" alt="Moving Image" id="moving-image" class="moving-image"> -->
         <h1 class="title">Memory Game</h1>
-        <!-- sends yout to the game -->
+        <!-- Sends you to the game -->
         <a href="memorizeWebsite.html">Start Game</a> 
     </div>
+
+    <!-- animation -->
+    <script>
+        const movingImage = createMovingImage("pixelFootball.png", Math.random() * window.innerWidth, Math.random() * window.innerHeight);
+
+        const moveSpeed = 1;
+        // Interval to change direction in milliseconds
+        const directionChangeInterval = 3000;
+
+        function getRandomDirection() {
+            return Math.random() * 2 * Math.PI;
+        }
+
+        function moveImageRandomly(imageData) {
+            const currentTime = Date.now();
+            // convert to seconds
+            const secondsTime = (currentTime - imageData.lastUpdateTime) / 1000;
+
+            // update image's position
+            imageData.x += imageData.horizontalX * secondsTime;
+            imageData.y += imageData.verticalY * secondsTime;
+
+
+            const maxWidth = window.innerWidth - imageData.image.clientWidth;
+            const maxHeight = window.innerHeight - imageData.image.clientHeight;
+            imageData.x = Math.max(0, Math.min(imageData.x, maxWidth));
+            imageData.y = Math.max(0, Math.min(imageData.y, maxHeight));
+
+
+            imageData.image.style.left = imageData.x + "px";
+            imageData.image.style.top = imageData.y + "px";
+
+            if (currentTime - imageData.lastUpdateTime > directionChangeInterval) {
+                const randomAngle = getRandomDirection();
+                // use cos and sin to move
+                imageData.horizontalX = Math.cos(randomAngle) * moveSpeed;
+                imageData.verticalY = Math.sin(randomAngle) * moveSpeed;
+                imageData.lastUpdateTime = currentTime;
+            }
+        }
+
+        function createMovingImage(src, x, y) {
+            const img = new Image();
+            img.src = src;
+            img.classList.add("moving-image");
+            document.body.appendChild(img);
+            return { image: img, x, y, horizontalX: 0, verticalY: 0, lastUpdateTime: 0 };
+        }
+
+        const randomAngle = getRandomDirection();
+        movingImage.horizontalX = Math.cos(randomAngle) * moveSpeed;
+        movingImage.verticalY = Math.sin(randomAngle) * moveSpeed;
+        movingImage.lastUpdateTime = Date.now();
+        setInterval(() => moveImageRandomly(movingImage), 20);
+    </script>
+    
 </body>
 </html>
