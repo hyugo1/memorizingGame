@@ -35,9 +35,7 @@ body {
 
 .moving-image {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    width: 100px;
+    width: 125px;
     height: auto;
     animation: moveImage 10s linear infinite;
 }
