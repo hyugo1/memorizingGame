@@ -9,7 +9,7 @@ const cardImages = [
     'volleyball.png'
 ];
 
-// Duplicate the card images to create pairs, this makes it 16 instead of 8
+// Duplicate the card images to create pairs of cards, this makes it 16 instead of 8 cards
 const cardImagesPairs = [...cardImages, ...cardImages];
 
 function shuffleArray(array) {
@@ -57,6 +57,8 @@ for (let i = 0; i < cardImagesPairs.length; i++) {
 }
 
 
+
+// check if the cards matches
 function checkForMatch() {
     const [card1, card2] = flippedCards;
     const img1 = card1.querySelector('.cardBack img');
@@ -102,9 +104,9 @@ function checkForMatch() {
     }
 }
 
-const resetButton = document.getElementById('restart-button');
+const restartButton = document.getElementById('restart-button');
 
-resetButton.addEventListener('click', function () {
+restartButton.addEventListener('click', function () {
     location.reload();
 });
 

@@ -12,11 +12,11 @@
     <div class="menu">
         <!-- <img src="baseball.png" alt="Moving Image" id="moving-image" class="moving-image"> -->
         <h1 class="title">Memory Game</h1>
-        <!-- Sends you to the game -->
+        <!-- Sends you to the game itself -->
         <a href="memorizeWebsite.html">Start Game</a> 
     </div>
 
-    <!-- animation -->
+    <!-- animation for the ball to make it interesting for the menu.-->
     <script>
         const movingImage = createMovingImage("pixelFootball.png", Math.random() * window.innerWidth, Math.random() * window.innerHeight);
 
@@ -33,7 +33,7 @@
             // convert to seconds
             const secondsTime = (currentTime - imageData.lastUpdateTime) / 1000;
 
-            // update image's
+            // update image's moving scheme
             imageData.x += imageData.horizontalX * secondsTime;
             imageData.y += imageData.verticalY * secondsTime;
 
@@ -49,7 +49,8 @@
 
             if (currentTime - imageData.lastUpdateTime > directionChangeInterval) {
                 const randomAngle = getRandomDirection();
-                // use cos and sin to move
+
+                // use cos and sin to move the image
                 imageData.horizontalX = Math.cos(randomAngle) * moveSpeed;
                 imageData.verticalY = Math.sin(randomAngle) * moveSpeed;
                 imageData.lastUpdateTime = currentTime;
