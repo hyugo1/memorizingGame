@@ -1,11 +1,26 @@
 # Memorizing Game using Javascript
-This is a game where you continuously flip cards until you find matching pairs, inspired by the childhood game 神経衰弱.
+Welcome to the Memory Card Game. Test your memory and concentration as you flip cards to find matching pairs. JavaScript, HTML, and CSS come together to create an engaging and visually appealing gaming experience.
 
-- Menu Page before starting
+## How to play
+- Click on cards to flip them.
+- Match pairs to score points.
+- The player with the most pairs wins!
+Are you ready to challenge your memory skills? Click to start the game now!
+
+
+### Menu Page
 ![Local Image](title1.png)
 
-- A preview of the game. The player who can flip the most pairs becomes the winner.
+### Gameplay Preview
 ![Local Image](game2.png)
 ![Local Image](game1.png)
 
-JavaScript, HTML and CSS was employed for the design and animation of this game.
+## Technologies Used
+- JavaScript: Powers the game's logic and interactivity, and dealt with certain animations.
+- HTML: Provides the structure for the web page.
+- CSS: Enhances the visual aesthetics and animations.
+
+## Features
+- Interactive and animated design.
+- Player-friendly menu page.
+- Real-time gameplay with dynamic card flipping
