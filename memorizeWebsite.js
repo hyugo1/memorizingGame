@@ -17,6 +17,8 @@ const cardImages = [
     'star.png'
 
 ];
+const turnCounterElement = document.getElementById('turn-counter');
+let turns = 0;
 
 // Duplicate the card images to create pairs of cards, this makes it 16 instead of 8 cards
 const cardImagesPairs = [...cardImages, ...cardImages];
@@ -71,6 +73,8 @@ function checkForMatch() {
     const [card1, card2] = flippedCards;
     const img1 = card1.querySelector('.cardBack img');
     const img2 = card2.querySelector('.cardBack img');
+    turns++;
+    turnCounterElement.textContent = `Total Turns: ${turns}`;
 
     if (img1.src === img2.src) {
         card1.classList.add('cardMatch', `player${currentPlayer}`);

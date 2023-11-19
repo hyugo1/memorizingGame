@@ -1,5 +1,6 @@
 body {
-    background-color: #f3e5c7;
+    /* background-color: #f3e5c7; */
+    background-color: #fff685;
 }
 
 .menu {
@@ -8,12 +9,18 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f3e5c7;
+    /* background-color: #f3e5c7; */
+    background-color: #fff685;
 }
 
 .menu .title {
     font-family: 'Pixelify Sans';
-    font-size: 2rem;
+    font-size: 6rem;
+    /* color: #333; */
+    /* color:#beef00; */
+    color: #f2b1d8;
+    -webkit-text-stroke: 2px rgb(0, 0, 0);
+    text-stroke: 2px #781a44;
 }
 
 .menu a {
@@ -31,6 +38,7 @@ body {
 .menu a:hover {
     background-color: #FF6B81;
     border: 2px solid rgb(18, 17, 22);
+    transform: scale(1.10); 
 }
 
 .moving-image {
