@@ -1,12 +1,21 @@
 const cardImages = [
     '8ball.png',
-    'american-football.png',
     'baseball.png',
     'basketball.png',
     'football.png',
     'world.png',
     'tennisball.png',
-    'volleyball.png'
+    'volleyball.png',
+    'orange.png',
+    'apple.png',
+    'clock.png',
+    'coin.png',
+    'cookie.png',
+    'pizza.png',
+    'donut.png',
+    'sun.png',
+    'star.png'
+
 ];
 
 // Duplicate the card images to create pairs of cards, this makes it 16 instead of 8 cards
@@ -57,7 +66,6 @@ for (let i = 0; i < cardImagesPairs.length; i++) {
 }
 
 
-
 // check if the cards matches
 function checkForMatch() {
     const [card1, card2] = flippedCards;
@@ -65,19 +73,20 @@ function checkForMatch() {
     const img2 = card2.querySelector('.cardBack img');
 
     if (img1.src === img2.src) {
-        card1.classList.add('cardMatch');
-        card2.classList.add('cardMatch');
+        card1.classList.add('cardMatch', `player${currentPlayer}`);
+        card2.classList.add('cardMatch', `player${currentPlayer}`);
         card1.classList.remove('cardOpen');
         card2.classList.remove('cardOpen');
         flippedCards = [];
         matches++;
 
         if (currentPlayer === 1) {
+            // player1ScoreElement.style.color = '#ff414e'; 
             player1ScoreElement.textContent = parseInt(player1ScoreElement.textContent) + 1;
         } else {
             player2ScoreElement.textContent = parseInt(player2ScoreElement.textContent) + 1;
+            // player2ScoreElement.style.color = '#00ff8c';
         }
-
         if (matches === cardImagesPairs.length / 2) {
             // check who is the winner
             let winnerMessage = '';
@@ -109,8 +118,6 @@ const restartButton = document.getElementById('restart-button');
 restartButton.addEventListener('click', function () {
     location.reload();
 });
-
-
 
 function highlightTheCurrentPlayer() {
     const player1 = document.getElementById('player1');

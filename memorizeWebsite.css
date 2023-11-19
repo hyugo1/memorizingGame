@@ -4,34 +4,44 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f3e5c7;
+    background-color: #fff685;
+    /* background-color: #6ed3cf; */
+    /* background-color: #94f0f1; */
 }
 
 .title {
-    margin-top: 20px;
+    font-size: 34px;
     font-family: 'Pixelify Sans';
-    font-size: 2rem;
+    margin-top: 5px;
+    -webkit-text-stroke: 2px #781a44; 
+    text-stroke: 2px #781a44;
+    color: #f2b1d8;
 }
 
 .memory-game {
     display: grid;
-    grid-template-columns: repeat(4, 120px);
-    gap: 10px;
-    position: relative;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 16px;
+    margin-bottom: 10px;
+    width: 800px; 
+    height: 550px; 
 }
 
 .players {
     position: absolute;
-    top: 50px;
-    left: 50px;
+    top: 25px;
+    left: 25px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     font-size: 3em;
-    font-family: 'Rubik', sans-serif;
-    background-color: #f3e5c7;
-    border: 2px solid #D2B48C;
+    /* font-family: 'Rubik', sans-serif; */
+    font-family: 'Pixelify Sans';
+    border: 2px solid #ff414e;
     min-height: 100px; 
+    background-color: #fffe9a;
+    -webkit-text-stroke: 1px #c25dad;
+    text-stroke: 1px #c25dad;
     /* text-align: center; */
 }
 
@@ -46,33 +56,38 @@ body {
 
 .player .score {
     color: black;
-    font-family: 'Rubik', sans-serif;
+    /* font-family: 'Rubik', sans-serif; */
+    font-family: 'Pixelify Sans';
     text-align: right;
     width: 40px;
 }
 
 .player.current {
-    background-color: #ffd555;
-    border: 2px solid rgb(255, 209, 72);
-    color: black;
-    font-family: 'Rubik', sans-serif;
+    /* background-color: #ffd555;
+    border: 2px solid rgb(255, 209, 72); */
+    background-color: #beef00;
+    border: 2px solid #ff414e;
+    /* font-family: 'Rubik', sans-serif; */
+    font-family: 'Pixelify Sans';
     font-size: 3rem;
-    width: 100%
+    width: 100%;
+    -webkit-text-stroke: 1px #c25dad;
+    text-stroke: 1px #c25dad;
 
 }
 .player.current .score {
+    font-family: 'Pixelify Sans';
     width: 50px; 
 }
 
 
 .card {
     width: 100px;
-    height: 140px;
-    perspective: 1000px;
+    height: 120px;
+    perspective: 700px;
     transform-style: preserve-3d;
     cursor: pointer;
 }
-
 
 
 .cardInner {
@@ -81,10 +96,12 @@ body {
     transform-style: preserve-3d;
     transition: transform 0.5s;
     transform: rotateY(180deg);
+    /* transform: rotateY(0deg); */
 }
 
 .cardOpen .cardInner {
     transform: rotateY(0deg);
+    /* transform: rotateY(180deg); */
 }
 
 
@@ -98,9 +115,10 @@ body {
     align-items: center;
     font-size: 2em;
     backface-visibility: hidden;
-    border: 1.5px solid rgba(181,44,44,255);
+    /* border: 1.5px solid rgba(181,44,44,255); */
+    /* border: #ff1d58; */
     border-radius: 5px;
-    background-color: rgba(181,44,44,255);
+    background-color: #ff1d58;
 }
 
 .cardFront img {
@@ -121,14 +139,24 @@ body {
     backface-visibility: hidden;
     border: 2px solid rgb(18, 17, 22);
     border-radius: 5px;
-    /* background-color: #DDDDDD; */
-    background-color: rgb(240, 240, 240);
+    /* background-color: #fbe3e8; */
+    /* background-color: #fceed1; */
+    /* background-color: #eeeeee; */
+    background-color: #f7f7f7;
+    
 
 }
-
 .cardBack img {
     width: 80%; 
     height: 80%;
+}
+
+.cardMatch.player1 .cardBack {
+    background-color: #51d0de; 
+}
+
+.cardMatch.player2 .cardBack {
+    background-color: #ffa8B6;
 }
 
 .cardFront {
@@ -138,6 +166,7 @@ body {
 .cardMatch .cardInner {
     transform: rotateY(0deg);
     pointer-events: none;
+
 }
 
 /* doenst mean you die :)  */
@@ -160,9 +189,10 @@ body {
 }
 
 #restart-button {
-    position: absolute;
-    top: 50%;
-    right: 15%;
+    /* position: absolute; */
+    /* top: 50%;
+    right: 15%; */
+    margin-bottom: 20px;
     /* background-color: #4ABF77; */
     background-color: #FFBF00;
     color: rgb(16, 13, 13);
@@ -187,7 +217,8 @@ body {
     position: fixed;
     top: 10px;
     right: 10px;
-    background-color: #b1ff3b;
+    /* background-color: #b1ff3b; */
+    background-color: #beef00;
     color: black;
     padding: 10px 20px;
     border-radius: 5px;
@@ -198,6 +229,12 @@ body {
 }
 
 .go-back-button:hover {
-    background-color: #FFBF00;
-    border: 1.5px solid #ffd91a;
+    background-color: #8bf0ba;
+    border: 1.5px solid #09c036;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
