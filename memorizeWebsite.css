@@ -4,7 +4,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #fff685;
+    background-color: #e6e6fa;
     /* background-color: #6ed3cf; */
     /* background-color: #94f0f1; */
 }
@@ -13,8 +13,8 @@ body {
     font-size: 34px;
     font-family: 'Pixelify Sans';
     margin-top: 5px;
-    -webkit-text-stroke: 2px #781a44; 
-    text-stroke: 2px #781a44;
+    -webkit-text-stroke: 1px #781a44; 
+    text-stroke: 1px #781a44;
     color: #f2b1d8;
 }
 
@@ -66,7 +66,7 @@ body {
     /* background-color: #ffd555; */
     /* border: 2px solid rgb(255, 209, 72); */
     /* background-color: #beef00; */
-    background-color: #8bf0ba;
+    background-color: #fffdd0;
     border: 2px solid #ff414e;
     /* font-family: 'Rubik', sans-serif; */
     font-family: 'Pixelify Sans';
@@ -198,8 +198,6 @@ body {
     position: fixed;
     right: 40px;
     top: 50%;
-    /* margin-top: 20px; */
-    /* background-color: #4ABF77; */
     background-color: #FFBF00;
     color: rgb(16, 13, 13);
     border: none;
@@ -223,7 +221,6 @@ body {
     position: fixed;
     top: 10px;
     right: 10px;
-    /* background-color: #b1ff3b; */
     background-color: #f2b1d8;
     color: black;
     padding: 10px 20px;
@@ -252,21 +249,15 @@ body {
 }
 
 #turn-counter {
-    /* font-family: 'Rubik', sans-serif; */
+    /* font-family: 'Pixelify Sans'; */
     font-family: 'Pixelify Sans';
-    font-size: 2.5rem;
-    /* color: #e62739; */
-    color:#beef00;
-     /* background-color: #fbe3e8; */
-    /* background-color: #fceed1; */
-    -webkit-text-stroke: 1.5px #403b20; 
-    text-stroke: 0.5px #feda6a;
-    /* margin-top: 10px; */
+    font-size: 3rem;
+    color:#75f54e;
+    -webkit-text-stroke: 0.7px #000000; 
     text-align: center;
     align-items: center;
-    /* top: 5px; */
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 2rem;
   }
 
 @keyframes bounce {

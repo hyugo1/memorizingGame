@@ -15,12 +15,11 @@ const cardImages = [
     'donut.png',
     'sun.png',
     'star.png'
-
 ];
 const turnCounterElement = document.getElementById('turn-counter');
 let turns = 0;
 
-// Duplicate the card images to create pairs of cards, this makes it 16 instead of 8 cards
+// Duplicate the card images to create pairs of cards
 const cardImagesPairs = [...cardImages, ...cardImages];
 
 function shuffleArray(array) {
@@ -42,15 +41,15 @@ const player2ScoreElement = document.querySelector('#player2 .score');
 
 function switchPlayer() {
     currentPlayer = currentPlayer === 1 ? 2 : 1;
-    highlightTheCurrentPlayer(); 
+    highlightTheCurrentPlayer();
 }
 
-for (let i = 0; i < cardImagesPairs.length; i++) {
+function createCard(image) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `<div class="cardInner">
-                            <div class="cardFront"><img src="card.png" alt="Cards"></div>
-                            <div class="cardBack"><img src="${cardImagesPairs[i]}" alt="Content Image"></div>
+                            <div class="cardFront"><img src="card.png" alt="Card Front"></div>
+                            <div class="cardBack"><img src="${image}" alt="Card Back"></div>
                       </div>`;
 
     card.addEventListener('click', function () {
@@ -64,48 +63,49 @@ for (let i = 0; i < cardImagesPairs.length; i++) {
         }
     });
 
-    memoryGame.appendChild(card);
+    return card;
 }
 
+function setupGame() {
+    memoryGame.innerHTML = '';
+    turns = 0;
+    turnCounterElement.textContent = `Total Turns: ${turns}`;
+    matches = 0;
+    flippedCards = [];
+    currentPlayer = 1;
+    player1ScoreElement.textContent = '0';
+    player2ScoreElement.textContent = '0';
+    highlightTheCurrentPlayer();
 
-// check if the cards matches
+    shuffleArray(cardImagesPairs);
+
+    for (let image of cardImagesPairs) {
+        const card = createCard(image);
+        memoryGame.appendChild(card);
+    }
+}
+
 function checkForMatch() {
     const [card1, card2] = flippedCards;
-    const img1 = card1.querySelector('.cardBack img');
-    const img2 = card2.querySelector('.cardBack img');
+    const img1 = card1.querySelector('.cardBack img').src;
+    const img2 = card2.querySelector('.cardBack img').src;
     turns++;
     turnCounterElement.textContent = `Total Turns: ${turns}`;
 
-    if (img1.src === img2.src) {
+    if (img1 === img2) {
         card1.classList.add('cardMatch', `player${currentPlayer}`);
         card2.classList.add('cardMatch', `player${currentPlayer}`);
-        card1.classList.remove('cardOpen');
-        card2.classList.remove('cardOpen');
         flippedCards = [];
         matches++;
 
         if (currentPlayer === 1) {
-            // player1ScoreElement.style.color = '#ff414e'; 
             player1ScoreElement.textContent = parseInt(player1ScoreElement.textContent) + 1;
         } else {
             player2ScoreElement.textContent = parseInt(player2ScoreElement.textContent) + 1;
-            // player2ScoreElement.style.color = '#00ff8c';
         }
-        if (matches === cardImagesPairs.length / 2) {
-            // check who is the winner
-            let winnerMessage = '';
-            if (parseInt(player1ScoreElement.textContent) > parseInt(player2ScoreElement.textContent)) {
-                winnerMessage = 'Player 1 wins!';
-            } else if (parseInt(player1ScoreElement.textContent) < parseInt(player2ScoreElement.textContent)) {
-                winnerMessage = 'Player 2 wins!';
-            } else {
-                winnerMessage = "It's a tie!";
-            }
 
-            const winnerMessageElement = document.getElementById('winner-message');
-            winnerMessageElement.textContent = winnerMessage;
-            const gameOverMessage = document.querySelector('.game-over-message');
-            gameOverMessage.style.display = 'block';
+        if (matches === cardImagesPairs.length / 2) {
+            declareWinner();
         }
     } else {
         setTimeout(() => {
@@ -117,16 +117,37 @@ function checkForMatch() {
     }
 }
 
+function declareWinner() {
+    let winnerMessage = '';
+    const player1Score = parseInt(player1ScoreElement.textContent);
+    const player2Score = parseInt(player2ScoreElement.textContent);
+
+    if (player1Score > player2Score) {
+        winnerMessage = 'Player 1 wins!';
+    } else if (player1Score < player2Score) {
+        winnerMessage = 'Player 2 wins!';
+    } else {
+        winnerMessage = "It's a tie!";
+    }
+
+    const winnerMessageElement = document.getElementById('winner-message');
+    winnerMessageElement.textContent = winnerMessage;
+    const gameOverMessage = document.querySelector('.game-over-message');
+    gameOverMessage.style.display = 'block';
+}
+
 const restartButton = document.getElementById('restart-button');
 
 restartButton.addEventListener('click', function () {
-    location.reload();
+    const gameOverMessage = document.querySelector('.game-over-message');
+    gameOverMessage.style.display = 'none';
+    setupGame();
 });
 
 function highlightTheCurrentPlayer() {
     const player1 = document.getElementById('player1');
     const player2 = document.getElementById('player2');
-    
+
     if (currentPlayer === 1) {
         player1.classList.add('current');
         player2.classList.remove('current');
@@ -136,6 +157,4 @@ function highlightTheCurrentPlayer() {
     }
 }
 
-highlightTheCurrentPlayer();
-
-
+setupGame();
