@@ -48,8 +48,8 @@ function createCard(image) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `<div class="cardInner">
-                            <div class="cardFront"><img src="card.png" alt="Card Front"></div>
-                            <div class="cardBack"><img src="${image}" alt="Card Back"></div>
+                            <div class="cardFront"><img src="images/card.png" alt="Card Front"></div>
+                            <div class="cardBack"><img src="images/${image}" alt="Card Back"></div>
                       </div>`;
 
     card.addEventListener('click', function () {
@@ -151,9 +151,13 @@ function highlightTheCurrentPlayer() {
     if (currentPlayer === 1) {
         player1.classList.add('current');
         player2.classList.remove('current');
+        player1.style.backgroundColor = 'lightblue';
+        player2.style.backgroundColor = '';
     } else {
         player1.classList.remove('current');
         player2.classList.add('current');
+        player2.style.backgroundColor = '#ffa8B6';
+        player1.style.backgroundColor = '';
     }
 }
 

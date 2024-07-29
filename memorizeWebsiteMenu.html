@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="memorizeWebsiteMenu.css"> 
+    <link rel="stylesheet" href="memorizeWebsiteMenu.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&family=PT+Sans:ital,wght@1,700&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&family=Onest&family=PT+Sans:ital,wght@1,700&family=Pixelify+Sans:wght@500&family=Poppins:ital,wght@1,200&family=Rubik:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
     <title>Memory Game Menu</title>
 </head>
 <body>
     <div class="menu">
-        <!-- <img src="baseball.png" alt="Moving Image" id="moving-image" class="moving-image"> -->
         <h1 class="title">Memory Game</h1>
-        <!-- Sends you to the game itself -->
-        <a href="memorizeWebsite.html">Start Game</a> 
+        <!-- <p class="description">non-online ver.</p> -->
+        <a href="memorizeWebsite.html">Start Game</a>
+        <a href="about.html">About This Game</a>
     </div>
 
-    <!-- animation for the ball to make it interesting for the menu.-->
+    <footer class="footer">
+        <ul class="md-flex">
+            <li><a href="https://www.linkedin.com/in/hyugo-senzai" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/hyugo1" target="_blank">GitHub</a></li>
+            <li><a href="https://www.hugosenzai.com" target="_blank">Homepage</a></li>
+        </ul>
+        <p class="copyright">© 2024 Hugo Senzai. All Rights Reserved.</p>
+    </footer>
+
     <script>
         const movingImage = createMovingImage("pixelFootball.png", Math.random() * window.innerWidth, Math.random() * window.innerHeight);
 
         const moveSpeed = 1;
-        // Interval to change direction in milliseconds
         const directionChangeInterval = 3000;
 
         function getRandomDirection() {
@@ -30,27 +37,21 @@
 
         function moveImageRandomly(imageData) {
             const currentTime = Date.now();
-            // convert to seconds
             const secondsTime = (currentTime - imageData.lastUpdateTime) / 1000;
 
-            // update image's moving scheme
             imageData.x += imageData.horizontalX * secondsTime;
             imageData.y += imageData.verticalY * secondsTime;
-
 
             const maxWidth = window.innerWidth - imageData.image.clientWidth;
             const maxHeight = window.innerHeight - imageData.image.clientHeight;
             imageData.x = Math.max(0, Math.min(imageData.x, maxWidth));
             imageData.y = Math.max(0, Math.min(imageData.y, maxHeight));
 
-
             imageData.image.style.left = imageData.x + "px";
             imageData.image.style.top = imageData.y + "px";
 
             if (currentTime - imageData.lastUpdateTime > directionChangeInterval) {
                 const randomAngle = getRandomDirection();
-
-                // use cos and sin to move the image
                 imageData.horizontalX = Math.cos(randomAngle) * moveSpeed;
                 imageData.verticalY = Math.sin(randomAngle) * moveSpeed;
                 imageData.lastUpdateTime = currentTime;
@@ -71,6 +72,5 @@
         movingImage.lastUpdateTime = Date.now();
         setInterval(() => moveImageRandomly(movingImage), 20);
     </script>
-    
 </body>
 </html>

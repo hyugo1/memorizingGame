@@ -1,0 +1,132 @@
+/* about.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    /* font-size: clamp(16px, 1.5vw, 25px); */
+}
+
+body {
+    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Rubik', sans-serif;
+    background-color: #4b4e5b;
+    color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.go-back-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.go-back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #1e1e24;
+    background-color: #ff6f61;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    border: 1.5px solid #1e1e24;
+}
+
+.go-back-button:hover {
+    background-color: #ff856e;
+    border: 1.5px solid #1e1e24;
+    scale: 1.10;
+}
+
+.about-container {
+    background-color: #4b4e5b;
+    border: 2px solid #ff6f61;
+    border-radius: 10px;
+    padding: 30px;
+    /* width: calc(100% - 40px); */
+    /* max-width: 800px; */
+    width: clamp(300px, 1000px, 100vw);
+    font-size: clamp(13px, 1.5vw, 25px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+h1, h2 {
+    font-family: 'Pixelify Sans', 'Poppins', sans-serif;
+    color: #ff6f61;
+    text-align: center;
+}
+
+p, ul, li {
+    font-family: 'Poppins', sans-serif;
+    color: #f4f4f9;
+    line-height: 1.6;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+li::before {
+    content: "★ ";
+    color: #ff6f61;
+}
+
+.footer {
+    padding: 2rem;
+    font-size: 15px;
+    color: #999;
+    background: #fff;
+    border-top: 1px solid #272932;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+}
+
+.footer a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    /* color: #f4f4f9; */
+    color: #333333;
+}
+
+@media (min-width: 768px) {
+    .footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .md-flex {
+        display: flex;
+    }
+
+    .md-flex li + li {
+        margin-left: 16px;
+    }
+}
+
+.copyright {
+    align-self: center;
+    /* color:#999; */
+    color: #b5b5b5;
+}

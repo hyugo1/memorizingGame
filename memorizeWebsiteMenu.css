@@ -1,6 +1,25 @@
+/* webMenu.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
 body {
-    /* background-color: #f3e5c7; */
+    font-family: 'Pixelify Sans', 'Poppins', sans-serif;
     background-color: #e6e6fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 
 .menu {
@@ -8,19 +27,16 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    /* background-color: #f3e5c7; */
+    width: 100%;
+    padding: 20px;
     background-color: #e6e6fa;
 }
 
 .menu .title {
     font-family: 'Pixelify Sans';
     font-size: 6rem;
-    /* color: #333; */
-    /* color:#beef00; */
     color: #f2b1d8;
     -webkit-text-stroke: 2px rgb(0, 0, 0);
-    text-stroke: 2px #781a44;
 }
 
 .menu a {
@@ -33,6 +49,8 @@ body {
     font-family: 'Hind Siliguri', sans-serif;
     border: 2px solid rgb(18, 17, 22);
     font-size: 1em;
+    margin: 10px 0;
+    /* margin-top: 2rem; */
 }
 
 .menu a:hover {
@@ -64,4 +82,66 @@ body {
     100% {
         transform: translate(0, 0);
     }
+}
+
+li {
+    margin: 3px 0;
+}
+
+li::before {
+    content: "♦ ";
+    color: #ff968c;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.footer {
+    padding: 2rem;
+    font-size: 15px;
+    color: #999;
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+}
+
+.footer a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #000;
+}
+
+@media (min-width: 768px) {
+    .footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .md-flex {
+        display: flex;
+    }
+
+    .md-flex li + li {
+        margin-left: 16px;
+    }
+}
+
+.copyright {
+    align-self: center;
+}
+
+.copyright::before {
+    color: #a1a1a1;
 }
